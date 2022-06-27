@@ -88,10 +88,11 @@ export default {
     @param selectedId ID of the image to be blurred.
     */
     async getBlur(selectedId) {
-      const localUrl = "http://127.0.0.1:8000/get-blur";
+      // localUrl = "http://127.0.0.1:8000/get-blur";
+      let url = "http://classify-demo.offis.de:85/get-blur";
       let payload = JSON.stringify({ id: selectedId, cldId: this.cldId });
 
-      let blurImg = await fetch(localUrl, {
+      let blurImg = await fetch(url, {
         method: "post",
         body: payload,
       })
