@@ -208,6 +208,10 @@ export default {
         return response.json();
       });
 
+      if(response == null){
+        return;
+      }
+
       let cldId = response.session.cldId;
       let userName = response.user.firstname;
       this.loginData = {
