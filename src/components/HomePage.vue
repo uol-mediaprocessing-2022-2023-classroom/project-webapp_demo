@@ -53,9 +53,11 @@
               class="idInput"
               v-model="cldId"
             />
-            <button class="basicButton" @click="loadImgs(cldId)">
+            <!-- Simple button that calls the method 'loadImages' -->
+            <button class="basicButton" @click="loadImages(cldId)">
               Load Images
             </button>
+
             <button class="basicButton" @click="getBlur(selectedImage.id)">
               Apply Blur
             </button>
@@ -131,10 +133,10 @@ export default {
 
   methods: {
     /*
-      Emit a loadImgs event.
+      Emit a loadImages event.
     */
-    loadImgs() {
-      this.$emit("loadImgs", this.cldId);
+    loadImages() {
+      this.$emit("loadImages", this.cldId);
     },
 
     /*

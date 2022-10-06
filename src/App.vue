@@ -7,7 +7,7 @@
       <HomePage
         :selectedImage="selectedImage"
         :currGallery="currGallery"
-        @loadImgs="loadImgs"
+        @loadImages="loadImages"
         @updateSelected="updateSelected"
         @getBlur="getBlur"
         @resetGalery="resetGallery"
@@ -41,7 +41,7 @@ export default {
 
     @param cldId The client ID of a CEWE myPhotos user, whose photos should be fetched.
     */
-    async loadImgs(cldId) {
+    async loadImages(cldId) {
       // First fetch the ids of all the images on a users account, we need these in order to acquire the actual images in a given resolution
       this.allImgData = await fetch(
         "https://tcmp.photoprintit.com/api/photos/all?orderDirection=asc&showHidden=false&showShared=false&includeMetadata=false",
