@@ -319,7 +319,7 @@ export default {
   },
 
   mounted() {
-    // Load local storage
+    // Load from local storage
     if (localStorage.isLoggedIn === "true") {
       this.cldId = localStorage.cldId;
       this.userName = localStorage.userName;
