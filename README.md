@@ -4,7 +4,7 @@
 
 1. Zuerst muss Node.js installiert werden, für Windows kann ein Installer genutzt werden: https://nodejs.org/en/download/
 2. Jetzt können die Dependencies installiert werden: ```npm install```
-( 3. Falls in 2. ein Error angezeigt wird: ```npm install @vue/cli-service -g``` )
+3. ( Falls beim starten ein Error angezeigt wird: ```npm install @vue/cli-service -g``` )
 
 
 ## Compile und Start
