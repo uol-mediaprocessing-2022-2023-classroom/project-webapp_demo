@@ -3,7 +3,8 @@
 ## Setup
 
 1. Zuerst muss Node.js installiert werden, für Windows kann ein Installer genutzt werden: https://nodejs.org/en/download/
-2. Jetzt können die Dependencies über die Konsole installiert werden mit: ```npm install```
+2. Vue CLI: ```npm install @vue/cli-service -g```
+3. Jetzt können die Dependencies installiert werden: ```npm install```
 
 
 ## Compile und Start
