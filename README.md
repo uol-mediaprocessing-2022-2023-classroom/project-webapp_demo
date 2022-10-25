@@ -1,4 +1,4 @@
-# cewe_api_demo
+# Frontend Demo
 
 ## Setup
 
