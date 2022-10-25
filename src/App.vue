@@ -45,7 +45,7 @@ export default {
       // First fetch the ids of all the images on a users account, we need these in order to acquire the actual images in a given resolution
       this.allImgData = await fetch(
         "https://tcmp.photoprintit.com/api/photos/all?orderDirection=asc&showHidden=false&showShared=false&includeMetadata=false",
-        { headers: { cldId: cldId, clientVersion: "0.0.0-apidoc" } }
+        { headers: { cldId: cldId, clientVersion: "0.0.0-uni_webapp_demo" } }
       ).then((idResponse) => idResponse.json());
 
       this.limit = 80;
@@ -72,7 +72,7 @@ export default {
             photo.id +
             ".jpg?size=300&errorImage=false&cldId=" +
             cldId +
-            "&clientVersion=0.0.0-apidoc"
+            "&clientVersion=0.0.0-uni_webapp_demo"
         );
         data.url = imgResponse.url;
         this.currGallery.push(data);
@@ -91,7 +91,7 @@ export default {
           selectedId +
           ".org?size=original&errorImage=false&cldId=" +
           cldId +
-          "&clientVersion=0.0.0-apidoc"
+          "&clientVersion=0.0.0-uni_webapp_demo"
       );
       const image = this.currGallery.filter((obj) => {
         return obj.id === selectedId;
@@ -112,12 +112,10 @@ export default {
     */
     async getBlur(selectedId, cldId) {
       let localUrl = "http://127.0.0.1:8000/get-blur";
-      let url = localUrl; 
-      let payload = JSON.stringify({ id: selectedId, cldId: cldId });
+      let url = localUrl + "/" + cldId + "/" + selectedId;
 
       let blurImg = await fetch(url, {
-        method: "post",
-        body: payload,
+        method: "get",
       })
         .then((response) => response.blob())
         .then((imageBlob) => {
