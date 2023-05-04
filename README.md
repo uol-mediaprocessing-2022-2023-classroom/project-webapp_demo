@@ -11,7 +11,6 @@
 ```npm run serve```<br>
 <br>
 Nach dem starten kann man auf die Seite über localhost zugreifen.<br>
-INFO: Der Browser wird die Seite als unsicher anzeigen, da die generierten SSL Zertifikate 'self-signed' sind und nicht überprüft werden können.
 
 <br>
 
