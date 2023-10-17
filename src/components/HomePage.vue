@@ -53,7 +53,7 @@
             <div>
                 <v-row>
                     <v-col v-for="n in galleryImageNum" :key="n" class="d-flex child-flex" cols="2">
-                        <v-img :src="currGallery[n - 1].url" aspect-ratio="1" max-height="200" max-width="200" class="grey lighten-2" @click="updateSelected(currGallery[n - 1].id)">
+                        <v-img :src="currentGallery[n - 1].url" aspect-ratio="1" max-height="200" max-width="200" class="grey lighten-2" @click="updateSelected(currentGallery[n - 1].id)">
                             <template v-slot:placeholder>
                                 <v-row class="fill-height ma-0" align="center" justify="center">
                                     <v-progress-circular indeterminate color="grey lighten-5"></v-progress-circular>
@@ -138,6 +138,8 @@ export default {
             if (response) {
                 this.handleLoginResponse(response);
             }
+
+            this.awaitingLoginResponse = false;
         },
 
         // Helper method called by login(), logs out the user.
@@ -150,17 +152,18 @@ export default {
         },
 
         // Helper method for saving user data in the browsers local storage.
-        loggedIn(cldId, userName) {
-            this.cldId = cldId;
+        handleLoginResponse(response) {
+            this.cldId = response.session.cldId;
+            this.userName = response.user.firstname;
             this.isLoggedIn = true;
-            this.userName = userName;
-            localStorage.cldId = cldId;
-            localStorage.userName = userName;
-            localStorage.isLoggedIn = true;
+
+            localStorage.cldId = this.cldId;
+            localStorage.userName = this.userName;
+            localStorage.isLoggedIn = this.isLoggedIn;
         },
 
         // Helper method for clearing user data from the browsers local storage.
-        loggedOut() {
+        handleLogoutResponse() {
             localStorage.cldId = "";
             localStorage.userName = "";
             localStorage.isLoggedIn = false;
@@ -181,7 +184,7 @@ export default {
                 avgColor: ""
             };
             this.awaitingLoginResponse = false;
-            this.$emit("resetGalery");
+            this.$emit("resetGallery");
         },
 
         // --- REQUEST HANDLERS ---
@@ -192,7 +195,7 @@ export default {
                 headers: {
                     "Content-Type": "application/json",
                     clientVersion: "0.0.1-medienVerDemo",
-                    apiAccessKey: "84d5fff65156920a682f71f502f63966",
+                    apiAccessKey: "6003d11a080ae5edf4b4f45481b89ce7",
                 },
                 body: JSON.stringify({
                     login: this.loginData.email,
@@ -205,7 +208,7 @@ export default {
         async sendLoginRequest(requestOptions) {
             let status = 0;
             try {
-                const response = await fetch("https://tcmp.photoprintit.com/api/account/session/", requestOptions);
+                const response = await fetch("https://cmp.photoprintit.com/api/account/session/", requestOptions);
                 status = response.status;
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
@@ -227,7 +230,7 @@ export default {
             };
 
             try {
-                const response = await fetch("https://tcmp.photoprintit.com/api/account/session/?invalidateRefreshToken=true", requestOptions);
+                const response = await fetch("https://cmp.photoprintit.com/api/account/session/?invalidateRefreshToken=true", requestOptions);
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
                 }

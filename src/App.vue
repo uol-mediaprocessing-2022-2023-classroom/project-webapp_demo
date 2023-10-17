@@ -28,7 +28,7 @@ export default {
             },
             currentGallery: [],
             allImgData: [],
-            limit: 80,
+            limit: 60,
             loadedAmount: 0
         };
     },
@@ -47,7 +47,7 @@ export default {
             };
 
             // Fetch all image IDs from the user's gallery
-            const response = await fetch("https://tcmp.photoprintit.com/api/photos/all?orderDirection=asc&showHidden=false&showShared=false&includeMetadata=false", {
+            const response = await fetch("https://cmp.photoprintit.com/api/photos/all?orderDirection=asc&showHidden=false&showShared=false&includeMetadata=false", {
                 headers: headers
             });
             this.allImgData = await response.json();
@@ -62,7 +62,7 @@ export default {
                 this.loadedAmount++;
 
                 // Construct URL for specific image info and fetch data
-                const url = `https://tcmp.photoprintit.com/api/photos/${photo.id}.jpg?size=300&errorImage=false&cldId=${cldId}&clientVersion=0.0.0-uni_webapp_demo`;
+                const url = `https://cmp.photoprintit.com/api/photos/${photo.id}.jpg?size=300&errorImage=false&cldId=${cldId}&clientVersion=0.0.1-medienVerDemo`;
                 const imgResponse = await fetch(url);
                 const imgUrl = imgResponse.url;
 
@@ -85,7 +85,7 @@ export default {
         async updateSelected(selectedId, cldId) {
 
             // Construct URL for fetching the high-resolution image
-            const url = `https://tcmp.photoprintit.com/api/photos/${selectedId}.org?size=original&errorImage=false&cldId=${cldId}&clientVersion=0.0.0-uni_webapp_demo`;
+            const url = `https://cmp.photoprintit.com/api/photos/${selectedId}.org?size=original&errorImage=false&cldId=${cldId}&clientVersion=0.0.1-medienVerDemo`;
             const response = await fetch(url);
 
             // Find the image data in the current gallery
